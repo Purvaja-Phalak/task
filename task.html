@@ -1,0 +1,34 @@
+<!DOCTYPE html>	
+<html> 
+	<body>
+	<p>Enter your Key</p>
+	<input id="key">
+	<button onclick="number()">submit</button>
+	<script type="text/javascript">
+	function number() 
+	{
+		key = document.getElementById("key").value;
+
+		httpRequest = new XMLHttpRequest();
+		fetch('https://fastag-internal.parkzap.com/account/mockable_test/', {mode:'no-cors'})
+		httpRequest.open("GET", "https://fastag-internal.parkzap.com/account/mockable_test/"+key);
+		httpRequest.send();
+
+		httpRequest.onreadystatechange = function()
+		{
+			if (this.readystate == 4 && this.status == 200)
+				{
+				user_data = JSON.parse(this.responseText);
+				console.log(user_data)
+				}	
+	var t0 = performance.now()
+
+number() 
+
+var t1 = performance.now()
+console.log("Time require for query " + (t1 - t0) + " milliseconds.") 
+		}
+	}
+</script>
+	</body>
+	</html>
